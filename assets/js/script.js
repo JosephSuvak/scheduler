@@ -22,6 +22,23 @@ THEN the saved events persist */
 
 var m = moment();
 
+$(".time-block").each(function () {
+    var userHour = parseInt(m.format('H'));
+        console.log(userHour);
+        var time = $(this).parent().attr('id');
+        console.log(time);
+        let idHour = parseInt(time) 
+        var textArea = $(this).siblings('.past');
+        if (userHour === idHour) {
+            $(textArea).removeClass(".past");
+            $(textArea).addClass(".present");
+        }
+        else if (userHour < idHour) {
+            $(textArea).removeClass(".past");
+            $(textArea).addClass(".future");
+        }
+    });
+
 function getNewDate() {
     let currentDay = document.getElementById('currentDay');
     let dateTime = m.format('LLLL');
@@ -63,7 +80,7 @@ function getLocalStorage() {
 
 getLocalStorage();
 
-function dynamicCSSchange() {
+/*function dynamicCSSchange() {
     //const rows = document.getElementsByClassName("row");
     var userHour = parseInt(m.format('H'));
 
@@ -84,29 +101,30 @@ function dynamicCSSchange() {
       }
   
   ***** Former Array to grab ID and assign all to a single variable.
-  */
+  
 
 
-    $(document).ready(function() {
-        $(".saveBtn").ready(function() {
-            //  createTimeNumArray(); [Call not necessary]
-            // 'id' is a parent of saveBtn. This grabs the parent.
-            var time = $(this).parent().attr('id');
-            console.log(time)
-            let idHour = parseInt(time) //Converts the string to idHour [Previous Hour]
-            var textArea = $(this).siblings('.past');
-            if (userHour === idHour) {
-                $(textArea).removeClass(".past").addClass(".present");
-            }
-
-            else if (userHour < idHour) {
-                $(textArea).removeClass(".past").addClass(".future");
-            }
-
-        }
-        );
-    }
-    );
 }
 
-dynamicCSSchange();
+dynamicCSSchange(); */
+
+
+/* $(".saveBtn").ready(function () {
+    //  createTimeNumArray(); [Call not necessary]
+    // 'id' is a parent of saveBtn. This grabs the parent.
+    var time = $(this).parent().attr('id');
+    console.log(time)
+    let idHour = parseInt(time) //Converts the string to idHour [Previous Hour]
+    var textArea = $(this).siblings('.past');
+    if (userHour == idHour) {
+        $(textArea).removeClass(".past");
+        $(textArea).addClass(".present");
+    }
+
+    else if (userHour < idHour) {
+        $(textArea).removeClass(".past");
+        $(textArea).addClass(".future");
+    }
+
+}
+); */ 
