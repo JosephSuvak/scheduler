@@ -21,23 +21,27 @@ THEN the saved events persist */
 
 
 var m = moment();
+var userHour = moment().hours();
 
-$(".time-block").each(function () {
-    var userHour = parseInt(m.format('H'));
+function dynamicCSSchange() {
+    $(".row").each(function () {
         console.log(userHour);
-        var time = $(this).parent().attr('id');
+        var time = parseInt($(this).attr('id'));
         console.log(time);
-        let idHour = parseInt(time) 
-        var textArea = $(this).siblings('.past');
-        if (userHour === idHour) {
-            $(textArea).removeClass(".past");
-            $(textArea).addClass(".present");
-        }
-        else if (userHour < idHour) {
-            $(textArea).removeClass(".past");
-            $(textArea).addClass(".future");
+        if (userHour > time) {
+            $(this).addClass('past');
+        } else if (userHour === time) {
+            $(this).removeClass('past');
+            $(this).addClass('present');
+        } else {
+            $(this).removeClass('past');
+            $(this).removeClass('present');
+            $(this).addClass('future');
         }
     });
+}
+
+dynamicCSSchange();
 
 function getNewDate() {
     let currentDay = document.getElementById('currentDay');
@@ -79,52 +83,3 @@ function getLocalStorage() {
 }
 
 getLocalStorage();
-
-/*function dynamicCSSchange() {
-    //const rows = document.getElementsByClassName("row");
-    var userHour = parseInt(m.format('H'));
-
-    /*  
-
-     //create an array for each id-hour for integers. 
-    //Create a second array for the moment H. 
-    //compare numbers.
-
-    function createTimeNumArray() {
-          //Array varaible assignment for each Document ID.
-          var [fiveAM, sixAM, sevenAM, eightAM, nineAM, tenAM, elevenAM, noon, onePM, twoPM, threePM, fourPM, fivePM, sixPM, sevenPM, eightPM] = [parseInt(document.getElementById('#5')), parseInt(document.getElementById('#6')), 
-          parseInt(document.getElementById('#7')), parseInt(document.getElementById('#8')), parseInt(document.getElementById('#9')), parseInt(document.getElementById('#10')), parseInt(document.getElementById('#11')),
-          parseInt(document.getElementById('#12')), parseInt(document.getElementById('#13')), parseInt(document.getElementById('#14')), parseInt(document.getElementById('#15')),parseInt(document.getElementById('#16')),
-          parseInt(document.getElementById('#17')), parseInt(document.getElementById('#18')), parseInt(document.getElementById('#19')), parseInt(document.getElementById('#20'))]
-          var idHour = [fiveAM, sixAM, sevenAM, eightAM, nineAM, tenAM, elevenAM, noon, onePM, twoPM, threePM, fourPM, fivePM, sixPM, sevenPM, eightPM]
-          return idHour
-      }
-  
-  ***** Former Array to grab ID and assign all to a single variable.
-  
-
-
-}
-
-dynamicCSSchange(); */
-
-
-/* $(".saveBtn").ready(function () {
-    //  createTimeNumArray(); [Call not necessary]
-    // 'id' is a parent of saveBtn. This grabs the parent.
-    var time = $(this).parent().attr('id');
-    console.log(time)
-    let idHour = parseInt(time) //Converts the string to idHour [Previous Hour]
-    var textArea = $(this).siblings('.past');
-    if (userHour == idHour) {
-        $(textArea).removeClass(".past");
-        $(textArea).addClass(".present");
-    }
-
-    else if (userHour < idHour) {
-        $(textArea).removeClass(".past");
-        $(textArea).addClass(".future");
-    }
-
-}
-); */ 
