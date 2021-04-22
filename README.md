@@ -21,4 +21,4 @@
 
 ## Media
 
-![Reflection of Current State](https://github.com/JosephSuvak/scheduler/raw/main/assets/media/2DAA6866-CD2A-4253-B5F3-2C362F2EBA04.GIF "Scheduler-Changes")
+![Reflection of Current State](/assets/media/2DAA6866-CD2A-4253-B5F3-2C362F2EBA04.GIF)
